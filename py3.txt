@@ -1,0 +1,27 @@
+import pandas as pd
+import numpy as np
+dataset=pd.read_csv('iris.csv')
+print(dataset)
+dataset.isna().sum()
+new_data=dataset.groupby(dataset['variety'])
+a=new_data.get_group('Setosa')
+a.describe()
+
+b=new_data.get_group('Virginica')
+b.describe()
+c=new_data.get_group('Versicolor')
+c.describe()
+
+method 2
+
+import pandas as pd
+a=pd.read_csv('data.csv')
+a
+
+a.age_group.count()
+
+a.groupby('age_group').sum()
+
+a.groupby('age_group').mean()
+ 
+a.groupby('age_group').median()

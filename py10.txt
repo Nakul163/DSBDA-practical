@@ -1,0 +1,52 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+a=sns.load_dataset("iris")
+
+a.isna().sum()
+
+a.shape
+
+a.describe()
+
+a.columns
+
+a.dtypes
+
+sns.histplot(a["sepal_length"])
+
+sns.histplot(a["sepal_width"])
+
+sns.histplot(a["petal_length"])
+
+sns.histplot(a["petal_width"])
+
+sns.histplot(a["species"])
+
+sns.boxplot(a["sepal_length"])
+
+sns.boxplot(a["sepal_width"])
+
+sns.boxplot(a["petal_length"])
+
+a.columns
+
+sns.boxplot(a["petal_width"])
+
+sns.boxplot(a["species"])
+
+a.head()
+
+ul=a['sepal_width'].mean()+3*a['sepal_width'].std()
+ll=a['sepal_width'].mean()-3*a['sepal_width'].std()
+a.loc[(a['sepal_width']>=ul) | (a['sepal_width']<=ll)]
+
+ul=a['petal_width'].mean()+3*a['petal_width'].std()
+ll=a['petal_width'].mean()-3*a['petal_width'].std()
+a.loc[(a['petal_width']>=ul) | (a['petal_width']<=ll)]
+
+ul=a['petal_length'].mean()+3*a['petal_length'].std()
+ll=a['petal_length'].mean()-3*a['petal_length'].std()
+a.loc[(a['petal_length']>=ul) | (a['petal_length']<=ll)]

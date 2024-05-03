@@ -1,0 +1,41 @@
+import pandas as pd
+import numpy as np
+a=pd.read_csv("/content/drive/MyDrive/DSBDA/Iris.csv")
+a.columns
+
+a.shape
+a.isna().sum()
+x=a.iloc[:,:-1].values
+y=a.iloc[:,-1].values
+x
+y
+
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+
+y=le.fit_transform(y)
+y
+
+from sklearn.model_selection import train_test_split
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.
+  ↪2,random_state=12)
+
+from sklearn.naive_bayes import GaussianNB
+
+nb=GaussianNB()
+
+nb.fit(x_train,y_train)
+
+GaussianNB()
+
+y_pred = nb.predict(x_test)
+
+from sklearn.metrics import␣
+  ↪accuracy_score,precision_score,confusion_matrix,recall_score
+
+pd.DataFrame(data={'Actual':y_test,'Pred':y_pred})
+
+accuracy_score(y_test,y_pred)
+
+confusion_matrix(y_test,y_pred)

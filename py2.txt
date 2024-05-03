@@ -1,0 +1,83 @@
+import pandas as pd
+import numpy as np
+
+import matplotlib.pyplot as plt
+dataset=pd.read_csv('Weight-Height.csv')
+dataset
+
+dataset=dataset.drop('Gender', axis=1)
+dataset=dataset.drop('Height', axis=1)
+
+dataset=dataset.rename(columns={'Weight':'Height'})
+dataset
+
+from scipy.stats import norm
+plt.hist(dataset['Height'],bins=20,rwidth=0.7,density=True)
+plt.title('Histogram')
+plt.xlabel('Height in cm')
+plt.ylabel('Count')
+
+import seaborn as sb
+sb.boxplot(dataset['Height'])
+
+dataset.describe()
+
+ul=dataset['Height'].mean()+3*dataset['Height'].std()
+ul
+ll=dataset['Height'].mean()-3*dataset['Height'].std()
+
+ll
+ul_ll=dataset.loc[(dataset['Height']>=ul) | ( dataset['Height']<=ll)]
+ul_ll
+#trimming
+new_dataset=dataset.loc[(dataset['Height']<=ul) & ( dataset['Height']>=ll)]
+new_dataset
+##after trimming
+print("lenght of old dataset:",len(dataset))
+print("length of new dataset:",len(new_dataset))
+print("trimmed numbers count:",len(dataset)-len(new_dataset))
+
+sb.boxplot(new_dataset['Height'])
+#capping
+
+a=dataset.copy()
+
+a.loc[(a['Height']>=ul),'Height']=ul
+
+a.loc[(a['Height']<=ll),'Height']=ll
+
+ul
+
+ll
+
+sb.boxplot(a['Height'])
+#IQR
+iqr_data=dataset.copy()
+q1=np.percentile(iqr_data['Height'],25)
+q2=np.percentile(iqr_data['Height'],50)
+q3=np.percentile(iqr_data['Height'],75)
+q1
+q2
+q3
+iqr=q3-q1
+ul=q3+1.5*iqr
+ll=q1-1.5*iqr
+iqr
+
+ul
+ll
+#trimming
+new_iqrdata=iqr_data.loc[(dataset['Height']<=ul) & ( dataset['Height']>=ll)
+new_iqrdata
+##after trimming
+print("lenght of old dataset:",len(iqr_data))
+print("length of new dataset:",len(new_iqrdata))
+print("trimmed numbers count:",len(iqr_data)-len(new_iqrdata))
+
+
+sb.boxplot(new_iqrdata['Height'])
+#capping
+aa=dataset.copy()
+aa.loc[(a['Height']>=ul),'Height']=ul
+aa.loc[(a['Height']<=ll),'Height']=ll
+aa

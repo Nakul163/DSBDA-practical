@@ -1,0 +1,29 @@
+import pandas as pd
+import numpy as nm
+
+df = pd.read_csv('/content/drive/MyDrive/DSBDA/titanic.csv')
+
+df.head()
+
+df.info()
+df.describe()
+df.isna().sum()
+df["Age"] = df["Age"].fillna(df["Age"].mean()
+
+df = df.drop("Cabin", axis=1)
+df.shape
+
+df["Sex"].value_counts()
+df["Ticket"].value_counts()
+
+df["Survived"].value_counts()
+
+df["Fare"].value_counts()
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+sns.countplot(df["Sex"])
+
+sns.regplot(x=df['Age'],y=df['Fare'])
+
+sns.histplot(df["Fare"])

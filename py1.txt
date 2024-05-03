@@ -1,0 +1,33 @@
+import pandas as pd
+import numpy as np
+a=pd.read_csv('iris.csv')
+new_a=a.copy()
+a.head()
+a.tail()
+a.info
+a.info()
+a.describe()
+a.isnull()
+a.isnull().sum()
+a.dtypes
+a.shape
+a['variety']=a['variety'].astype('category')
+a['variety']=a['variety'].cat.codes
+a['variety']
+x=a.iloc[:,:-1].values
+y=a.iloc[:,-1].values
+x
+y
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+y=le.fit_transform(y)
+print(y)
+xx=x.copy()
+xx
+from sklearn.preprocessing import StandardScaler
+sc=StandardScaler()
+x=sc.fit_transform(x)
+x
+from sklearn.preprocessing import MinMaxScaler
+ms=MinMaxScaler()
+xx=ms.fit_transform(xx)

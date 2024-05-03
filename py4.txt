@@ -1,0 +1,34 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+a=pd.read_csv("Salary_data.csv")
+a.head()
+
+a.isna().sum()
+x=a.iloc[:,:-1].values
+y=a.iloc[:,-1].values
+x
+y
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_sta
+
+x_train
+y_train
+from sklearn.linear_model import LinearRegression
+regressor=LinearRegression()
+regressor.fit(x_train,y_train)
+y_predict=regressor.predict(x_test)
+
+plt.scatter(x_train,y_train,color="red")
+plt.plot(x_train,regressor.predict(x_train),color="blue")
+plt.title("Title")
+plt.xlabel("Number of experiance")
+plt.ylabel("Salary")
+plt.show()
+
+plt.scatter(x_test,y_test,color='violet')
+plt.plot(x_train,regressor.predict(x_train),color='black')
+plt.title('Test')
+plt.xlabel('Experiance')
+plt.ylabel('salary')
+plt.show()

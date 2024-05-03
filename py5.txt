@@ -1,0 +1,30 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+a=pd.read_csv('Social_Network_Ads.csv')
+a
+a.isna().sum()
+x=a.iloc[:,:-1].values
+y=a.iloc[:,-1].values
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_sta
+from sklearn.preprocessing import StandardScaler
+sc=StandardScaler()
+x_train=sc.fit_transform(x_train)
+x_test=sc.transform(x_test)
+
+from sklearn.linear_model import LogisticRegression
+classifier=LogisticRegression(random_state=0)
+classifier.fit(x_train,y_train)
+classifier.predict(sc.transform([[30,70000]]))
+y_pred=classifier.predict(x_test)
+y_pred
+pd.DataFrame(data={"Actual": y_test, "Pred": y_pred})
+from sklearn.metrics import confusion_matrix,r2_score,precision_score
+confusion_matrix(y_test,y_pred)
+
+accuracy_score(y_test,y_pred)
+precision_score(y_test,y_pred)
+from sklearn.metrics import f1_score,recall_score
+f1_score(y_test,y_pred)
+recall_score(y_test,y_pred)
